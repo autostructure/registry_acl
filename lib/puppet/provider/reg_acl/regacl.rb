@@ -176,8 +176,8 @@ Puppet::Type.type(:reg_acl).provide(:regacl, parent: Puppet::Provider::Regpowers
         when /hkey_users/
           @acl_hash[:key_exists] = true if !(Win32::Registry::HKEY_USERS.open(targetarr[1..-1].join('\\'), access)).nil?
         end
-      rescue
-        raise "Target Registry Key doesn't exist!"
+      rescue => e
+        raise e
       end
 
       owner_cmd = "(get-acl '#{target}').owner"
