@@ -339,7 +339,7 @@ Puppet::Type.type(:reg_acl).provide(:regacl, parent: Puppet::Provider::Regpowers
     end
 
     cmd << <<-ps1.gsub(/^\s+/, "")
-      Set-ACL #{@resource[:target]} $objACL -ErrorAction Stop
+      Set-ACL '#{@resource[:target]}' $objACL -ErrorAction Stop
     ps1
 
     cmd
@@ -376,7 +376,7 @@ Puppet::Type.type(:reg_acl).provide(:regacl, parent: Puppet::Provider::Regpowers
       cmd << <<-ps1.gsub(/^\s+/, "")
         $t = get-acl #{@resource[:target]}
         $t.SetAccessRuleProtection(#{rule})
-        Set-ACL #{@resource[:target]} $t -ErrorAction Stop
+        Set-ACL '#{@resource[:target]}' $t -ErrorAction Stop
       ps1
     end
 
