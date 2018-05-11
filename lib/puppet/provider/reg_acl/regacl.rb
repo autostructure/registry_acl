@@ -364,7 +364,7 @@ Puppet::Type.type(:reg_acl).provide(:regacl, parent: Puppet::Provider::Regpowers
         ps1
       else
         cmd << <<-ps1.gsub(/^\s+/, "")
-          $objACL = get-acl #{@resource[:target]} -ErrorAction Stop
+          $objACL = get-acl '#{@resource[:target]}' -ErrorAction Stop
         ps1
       end
       cmd << ace_rule_builder
